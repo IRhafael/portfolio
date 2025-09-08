@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Italo Rhaffael - Desenvolvedor Full Stack</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+  /* ...existing code... */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-card: #1a1a1a;
+      --text-primary: #ffffff;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --border: #262626;
+      --border-light: #404040;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      padding: 1rem 0;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+      position: relative;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--text-primary);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.2s ease;
+    }
+
+    nav a:hover::after,
+    nav a.active::after {
+      width: 100%;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.875rem;
+      transition: all 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--border-light);
+      color: var(--text-primary);
+    }
+
+    /* Main Content */
+    main {
+      padding-top: 80px;
+    }
+
+    section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 8rem 2rem;
+      text-align: left;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero .subtitle {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+
+    .hero .description {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    /* Section Titles */
+    .section-title {
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 3rem;
+      color: var(--text-primary);
+      text-align: center;
+    }
+
+    /* Grid System */
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      transition: all 0.2s ease;
+    }
+
+    .card:hover {
+      border-color: var(--border-light);
+      transform: translateY(-2px);
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Project Cards */
+    .project-card {
+      position: relative;
+    }
+
+    .project-card .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    .tech-tag {
+      background: var(--bg-secondary);
+      color: var(--text-muted);
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border: 1px solid var(--border);
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      transition: color 0.2s ease;
+    }
+
+    .project-link:hover {
+      color: var(--accent-hover);
+    }
+
+    /* Skills Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-category h4 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-item {
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      border: 1px solid var(--border);
+    }
+
+    /* Code Section */
+    .code-container {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin: 2rem 0;
+    }
+
+    .code-header {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    pre {
+      padding: 1.5rem;
+      overflow-x: auto;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    code {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    }
+
+    /* Playground */
+    .playground {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .playground h4 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-primary);
+      font-size: 0.875rem;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .checkbox-group {
+      display: flex;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    .btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 0.875rem;
+      transition: background 0.2s ease;
+    }
+
+    .btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+    }
+
+    .btn-secondary:hover {
+      background: var(--border);
+    }
+
+    .result {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem;
+      margin-top: 1rem;
+      font-family: monospace;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      word-break: break-all;
+      min-height: 50px;
+    }
+
+    /* Contact Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .contact-item {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .contact-item h4 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .contact-item a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .contact-item a:hover {
+      color: var(--accent-hover);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    /* Light Theme */
+    body.light {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8f9fa;
+      --bg-card: #ffffff;
+      --text-primary: #111827;
+      --text-secondary: #6b7280;
+      --text-muted: #9ca3af;
+      --border: #e5e7eb;
+      --border-light: #d1d5db;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        padding: 0 1rem;
+      }
+
+      nav {
+        gap: 1rem;
+      }
+
+      nav a {
+        font-size: 0.875rem;
+      }
+
+      .hero {
+        padding: 4rem 1rem;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      section {
+        padding: 3rem 1rem;
+      }
+
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo">Italo Rhaffael</div>
+      <nav>
+        <a href="#sobre">Sobre</a>
+        <a href="#skills">Skills</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#codigo">Código</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <button class="theme-toggle" onclick="toggleTheme()">Light</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="sobre">
+      <h1>Desenvolvedor Full Stack</h1>
+      <div class="subtitle">Backend • Automação • Inteligência Artificial</div>
+      <div class="description">
+        Especializado em Python e desenvolvimento backend, com experiência em automação de processos, 
+        integração de sistemas e soluções de IA. Atualmente desenvolvendo sistemas robustos para 
+        escritórios contábeis e implementando chatbots inteligentes com RAG.
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2 class="section-title">Competências Técnicas</h2>
+      <div class="skills-grid">
+        <div class="card">
+          <h4>Backend Development</h4>
+          <div class="skill-list">
+            <span class="skill-item">Python</span>
+            <span class="skill-item">FastAPI</span>
+            <span class="skill-item">Django</span>
+            <span class="skill-item">Flask</span>
+            <span class="skill-item">REST APIs</span>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h4>Database & Storage</h4>
+          <div class="skill-list">
+            <span class="skill-item">PostgreSQL</span>
+            <span class="skill-item">MySQL</span>
+            <span class="skill-item">MongoDB</span>
+            <span class="skill-item">Redis</span>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h4>AI & Automation</h4>
+          <div class="skill-list">
+            <span class="skill-item">RAG</span>
+            <span class="skill-item">OpenAI API</span>
+            <span class="skill-item">LangChain</span>
+            <span class="skill-item">Process Automation</span>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h4>DevOps & Tools</h4>
+          <div class="skill-list">
+            <span class="skill-item">Docker</span>
+            <span class="skill-item">Linux</span>
+            <span class="skill-item">Nginx</span>
+            <span class="skill-item">Git</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projetos">
+      <h2 class="section-title">Projetos Principais</h2>
+      <div class="grid grid-2">
+        <div class="card project-card">
+          <h3>SatusSys</h3>
+          <img src="midia/WhatsApp Image 2025-09-04 at 17.33.18.jpeg" alt="SatusSys" style="width:100%;border-radius:8px;margin-bottom:1rem;">
+          <p>Sistema completo para gestão de obrigações fiscais em escritórios contábeis. 
+          Inclui diagnóstico de maturidade tecnológica, exportação de relatórios avançada, 
+          controle de permissões e backup automatizado.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Django</span>
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">AJAX</span>
+          </div>
+          <a href="#" class="project-link">Ver projeto →</a>
+        </div>
+
+        <div class="card project-card">
+          <h3>MentoRR - IA Tributária</h3>
+          <img src="midia/IA_ReformaTributaria.jpeg" alt="MentoRR - IA Tributária" style="width:100%;border-radius:8px;margin-bottom:1rem;">
+          <p>Chatbot inteligente desenvolvido com RAG para consultoria tributária via WhatsApp. 
+          Especializada em reforma tributária e atendimento inicial automatizado.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">RAG</span>
+            <span class="tech-tag">OpenAI</span>
+            <span class="tech-tag">WhatsApp API</span>
+          </div>
+          <a href="#" class="project-link">Ver projeto →</a>
+        </div>
+
+        <div class="card project-card">
+          <h3>Automação XML</h3>
+          <img src="midia/WhatsApp Image 2025-09-04 at 17.33.18.jpeg" alt="Automação XML" style="width:100%;border-radius:8px;margin-bottom:1rem;">
+          <p>Sistema automatizado para monitoramento, extração e importação de XMLs fiscais. 
+          Integra com sistema Fortes eliminando processos manuais repetitivos.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">File Processing</span>
+            <span class="tech-tag">System Integration</span>
+          </div>
+          <a href="#" class="project-link">Ver projeto →</a>
+        </div>
+
+        <div class="card project-card">
+          <h3>Scripts de Infraestrutura</h3>
+          <p>Conjunto de utilitários Python para manutenção de servidores, 
+          monitoramento de recursos e automatização de tarefas administrativas.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Linux</span>
+            <span class="tech-tag">Automation</span>
+          </div>
+          <a href="#" class="project-link">Ver projeto →</a>
+        </div>
+
+        <div class="card project-card">
+          <h3>Orumilá - IA Contábil </h3>
+          <img src="midia/Orumila.jpeg" alt="Orumilá IA" style="width:100%;border-radius:8px;margin-bottom:1rem;">
+        <!-- Modal para imagem expandida -->
+        <!-- Modal removido -->
+          <p>Orumilá é uma IA RAG com sistema completo de scraper acoplado à memória, capaz de coletar informações contábeis e fiscais tributárias, gerar relatórios automáticos e manter colaboradores informados sobre novidades e notícias do setor. O projeto inclui um chat interativo para facilitar a comunicação.<br><br>
+          Destaque para o uso de <strong>banco de dados vetoriais</strong> (ChromaDB) para armazenamento e busca semântica de informações, potencializando a inteligência e precisão das respostas.<br><br>
+          O nome Orumilá faz referência ao orixá da sabedoria, conhecimento e profecia na mitologia iorubá, simbolizando a inteligência e visão do sistema.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">RAG</span>
+            <span class="tech-tag">ChromaDB</span>
+            <span class="tech-tag">Scraper</span>
+            <span class="tech-tag">Relatórios</span>
+            <span class="tech-tag">Chatbot</span>
+          </div>
+          <a href="#" class="project-link">Ver projeto →</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="codigo">
+      <h2 class="section-title">Código & Ferramentas</h2>
+      
+      <div class="playground">
+        <h4>Gerador de Senhas Seguras</h4>
+        <div class="form-group">
+          <label>Comprimento da senha</label>
+          <input type="number" id="length" min="6" max="32" value="12">
+        </div>
+        <div class="checkbox-group">
+          <div class="checkbox-item">
+            <input type="checkbox" id="upper" checked>
+            <span>Maiúsculas</span>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="numbers" checked>
+            <span>Números</span>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="symbols">
+            <span>Símbolos</span>
+          </div>
+        </div>
+        <button class="btn" onclick="gerarSenha()">Gerar Senha</button>
+        <div id="senha" class="result"></div>
+      </div>
+
+      <div class="playground">
+        <h4>Criptografia AES</h4>
+        <div class="form-group">
+          <label>Texto para criptografar</label>
+          <input type="text" id="texto" placeholder="Digite o texto">
+        </div>
+        <div class="form-group">
+          <label>Chave de criptografia</label>
+          <input type="text" id="chave" value="minha-chave-secreta">
+        </div>
+        <div style="display: flex; gap: 1rem;">
+          <button class="btn" onclick="criptografar()">Criptografar</button>
+          <button class="btn btn-secondary" onclick="descriptografar()">Descriptografar</button>
+        </div>
+        <div id="criptografado" class="result"></div>
+        <div id="descriptografado" class="result"></div>
+      </div>
+
+  <!-- Exemplo removido conforme solicitado -->
+    </section>
+
+    <section id="contato">
+      <h2 class="section-title">Contato</h2>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <h4>Email</h4>
+          <a href="mailto:italo.rhaffael@email.com">italo.rhaffael@email.com</a>
+        </div>
+        <div class="contact-item">
+          <h4>LinkedIn</h4>
+          <a href="#">linkedin.com/in/italo-rhaffael</a>
+        </div>
+        <div class="contact-item">
+          <h4>GitHub</h4>
+          <a href="#">github.com/italorhaffael</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Italo Rhaffael - Desenvolvedor Full Stack</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <script>
+  // ...existing code...
+    function toggleTheme() {
+      document.body.classList.toggle('light');
+      const btn = document.querySelector('.theme-toggle');
+      btn.textContent = document.body.classList.contains('light') ? 'Dark' : 'Light';
+    }
+
+    function gerarSenha() {
+      const length = parseInt(document.getElementById('length').value) || 12;
+      const upper = document.getElementById('upper').checked;
+      const numbers = document.getElementById('numbers').checked;
+      const symbols = document.getElementById('symbols').checked;
+      
+      let chars = 'abcdefghijklmnopqrstuvwxyz';
+      if (upper) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      if (numbers) chars += '0123456789';
+      if (symbols) chars += '!@#$%^&*()-_=+[]{};:,.<>?';
+      
+      let senha = '';
+      for (let i = 0; i < length; i++) {
+        senha += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      
+      document.getElementById('senha').innerHTML = `<strong>Senha gerada:</strong><br>${senha}`;
+    }
+
+    function criptografar() {
+      const texto = document.getElementById('texto').value;
+      const chave = document.getElementById('chave').value;
+      
+      if (!texto || !chave) {
+        document.getElementById('criptografado').textContent = 'Preencha o texto e a chave';
+        return;
+      }
+      
+      const encrypted = CryptoJS.AES.encrypt(texto, chave).toString();
+      document.getElementById('criptografado').innerHTML = `<strong>Resultado:</strong><br>${encrypted}`;
+    }
+
+    function descriptografar() {
+      const encrypted = document.getElementById('criptografado').textContent.split('\n')[1];
+      const chave = document.getElementById('chave').value;
+      
+      if (!encrypted || !chave) {
+        document.getElementById('descriptografado').textContent = 'Primeiro criptografe um texto';
+        return;
+      }
+      
+      try {
+        const decrypted = CryptoJS.AES.decrypt(encrypted, chave).toString(CryptoJS.enc.Utf8);
+        document.getElementById('descriptografado').innerHTML = `<strong>Resultado:</strong><br>${decrypted}`;
+      } catch {
+        document.getElementById('descriptografado').textContent = 'Erro ao descriptografar';
+      }
+    }
+
+    // Smooth scroll navigation
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
