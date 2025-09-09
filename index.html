@@ -6,6 +6,42 @@
   <title>Italo Rhaffael - Desenvolvedor Full Stack</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
+    /* Animações de entrada */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeInUp 1s forwards;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    .card.fade-in {
+      animation-delay: 0.5s;
+    }
+    .card.fade-in:nth-child(2) { animation-delay: 0.7s; }
+    .card.fade-in:nth-child(3) { animation-delay: 0.9s; }
+    .card.fade-in:nth-child(4) { animation-delay: 1.1s; }
+    .card.fade-in:nth-child(5) { animation-delay: 1.3s; }
+
+    /* Efeito de digitação */
+    .typing {
+      border-right: 2px solid var(--accent);
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 2.2s steps(30, end) forwards, blink 0.7s infinite;
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    @keyframes blink {
+      0%, 100% { border-color: var(--accent); }
+      50% { border-color: transparent; }
+    }
   /* ...existing code... */
     * {
       margin: 0;
@@ -497,7 +533,7 @@
   </style>
 </head>
 <body>
-  <header>
+  <header class="fade-in">
     <div class="header-content">
       <div class="logo">Italo Rhaffael</div>
       <nav>
@@ -514,7 +550,7 @@
     <section class="hero" id="sobre">
       <div style="display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;justify-content:space-between;">
         <div>
-          <h1>Desenvolvedor Full Stack</h1>
+          <h1><span id="typed-title" class="typing"></span></h1>
           <div class="subtitle">Backend • Automação • Inteligência Artificial</div>
           <div class="description">
             Especializado em Python e desenvolvimento backend, com experiência em automação de processos, 
@@ -586,7 +622,7 @@
   <h2 class="section-title">Projetos Principais</h2>
   <p style="text-align:center;color:var(--text-muted);margin-bottom:2rem;max-width:700px;margin-left:auto;margin-right:auto;font-size:1rem;">Esses são apenas alguns dos projetos que desenvolvi. Tenho muitos outros já entregues e diversos em plano de desenvolvimento, abrangendo automação, IA, sistemas embarcados e soluções personalizadas para empresas.</p>
       <div class="grid grid-2">
-        <div class="card project-card">
+        <div class="card project-card fade-in">
           <h3>SatusSys</h3>
           <img src="midia/satussys.png" alt="SatusSys" style="width:100%;border-radius:8px;margin-bottom:1rem;">
           <p>Sistema completo para gestão de obrigações fiscais em escritórios contábeis.<br>
@@ -603,7 +639,7 @@
           <a href="https://youtu.be/T7emugc9KPc" class="project-link" target="_blank">Ver vídeo →</a>
         </div>
 
-        <div class="card project-card">
+  <div class="card project-card fade-in">
           <h3>Pomodoro EmbarcaTech</h3>
           <img src="midia/embarcatech_pomodoro.jpg" alt="Pomodoro EmbarcaTech" style="width:100%;border-radius:8px;margin-bottom:1rem;">
           <p>Projeto de sistema embarcado desenvolvido para graduação, utilizando a placa BitDoglab do EmbarcaTech.<br>
@@ -620,7 +656,7 @@
           <a href="https://youtu.be/jYG2Jo9X7VY" class="project-link" target="_blank">Ver vídeo →</a>
         </div>
 
-        <div class="card project-card">
+  <div class="card project-card fade-in">
           <h3>Orumilá - IA Contábil </h3>
           <img src="midia/Orumila.jpeg" alt="Orumilá IA" style="width:100%;border-radius:8px;margin-bottom:1rem;">
           <!-- Modal para imagem expandida -->
@@ -639,7 +675,7 @@
           <a href="https://youtu.be/FVpP623zZqA" class="project-link">Ver video →</a>
         </div>
 
-        <div class="card project-card">
+  <div class="card project-card fade-in">
           <h3>MentoRR - IA Tributária</h3>
           <img src="midia/IA_ReformaTributaria.jpeg" alt="MentoRR - IA Tributária" style="width:100%;border-radius:8px;margin-bottom:1rem;">
           <p>Chatbot inteligente desenvolvido com RAG para consultoria tributária via WhatsApp.<br>
@@ -655,7 +691,7 @@
           </div>
         </div>
 
-        <div class="card project-card">
+  <div class="card project-card fade-in">
           <h3>TCC - IA e Propriedade Intelectual</h3>
           <img src="midia/tcc.png" alt="TCC IA e Propriedade Intelectual" style="width:100%;border-radius:8px;margin-bottom:1rem;">
           <p>Este TCC compara APIs de inteligência artificial (ChatGPT, LLaMA e Mistral) na classificação de extratos de contratos de inovação aberta. Foram avaliadas acurácia, precisão e eficiência dos modelos, destacando cenários ideais para cada ferramenta e orientando a escolha conforme a necessidade do projeto.</p>
@@ -699,6 +735,21 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
   <script>
+  // Efeito de digitação no título principal
+  document.addEventListener('DOMContentLoaded', function() {
+    const title = "Desenvolvedor Full Stack";
+    const typed = document.getElementById('typed-title');
+    let i = 0;
+    function type() {
+      if (i <= title.length) {
+        typed.textContent = title.slice(0, i);
+        i++;
+        setTimeout(type, 60);
+      }
+    }
+    type();
+  });
+
   // ...existing code...
     function toggleTheme() {
       document.body.classList.toggle('light');
