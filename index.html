@@ -750,62 +750,11 @@
     type();
   });
 
-  // ...existing code...
     function toggleTheme() {
       document.body.classList.toggle('light');
       const btn = document.querySelector('.theme-toggle');
       btn.textContent = document.body.classList.contains('light') ? 'Dark' : 'Light';
     }
-
-    function gerarSenha() {
-      const length = parseInt(document.getElementById('length').value) || 12;
-      const upper = document.getElementById('upper').checked;
-      const numbers = document.getElementById('numbers').checked;
-      const symbols = document.getElementById('symbols').checked;
-      
-      let chars = 'abcdefghijklmnopqrstuvwxyz';
-      if (upper) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      if (numbers) chars += '0123456789';
-      if (symbols) chars += '!@#$%^&*()-_=+[]{};:,.<>?';
-      
-      let senha = '';
-      for (let i = 0; i < length; i++) {
-        senha += chars.charAt(Math.floor(Math.random() * chars.length));
-      }
-      
-      document.getElementById('senha').innerHTML = `<strong>Senha gerada:</strong><br>${senha}`;
-    }
-
-    function criptografar() {
-      const texto = document.getElementById('texto').value;
-      const chave = document.getElementById('chave').value;
-      
-      if (!texto || !chave) {
-        document.getElementById('criptografado').textContent = 'Preencha o texto e a chave';
-        return;
-      }
-      
-      const encrypted = CryptoJS.AES.encrypt(texto, chave).toString();
-      document.getElementById('criptografado').innerHTML = `<strong>Resultado:</strong><br>${encrypted}`;
-    }
-
-    function descriptografar() {
-      const encrypted = document.getElementById('criptografado').textContent.split('\n')[1];
-      const chave = document.getElementById('chave').value;
-      
-      if (!encrypted || !chave) {
-        document.getElementById('descriptografado').textContent = 'Primeiro criptografe um texto';
-        return;
-      }
-      
-      try {
-        const decrypted = CryptoJS.AES.decrypt(encrypted, chave).toString(CryptoJS.enc.Utf8);
-        document.getElementById('descriptografado').innerHTML = `<strong>Resultado:</strong><br>${decrypted}`;
-      } catch {
-        document.getElementById('descriptografado').textContent = 'Erro ao descriptografar';
-      }
-    }
-
     // Smooth scroll navigation
     document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
