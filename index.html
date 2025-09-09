@@ -430,16 +430,38 @@
     }
 
     /* Light Theme */
-    body.light {
-      --bg-primary: #ffffff;
-      --bg-secondary: #f8f9fa;
-      --bg-card: #ffffff;
-      --text-primary: #111827;
-      --text-secondary: #6b7280;
-      --text-muted: #9ca3af;
-      --border: #e5e7eb;
-      --border-light: #d1d5db;
-    }
+      body.light {
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8f9fa;
+        --bg-card: #ffffff;
+        --text-primary: #22223b;
+        --text-secondary: #3b3b4f;
+        --text-muted: #5c5c7a;
+        --accent: #2563eb;
+        --accent-hover: #1d4ed8;
+        --border: #e5e7eb;
+        --border-light: #d1d5db;
+      }
+
+      body.light header {
+        background: rgba(255,255,255,0.95);
+        border-bottom: 1px solid var(--border);
+      }
+
+  body.light header {
+    background: rgba(255,255,255,0.95);
+
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-card: #ffffff;
+    --text-primary: #22223b;
+    --text-secondary: #3b3b4f;
+    --text-muted: #5c5c7a;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --border: #e5e7eb;
+    --border-light: #d1d5db;
+      }
 
     /* Responsive */
     @media (max-width: 768px) {
@@ -482,7 +504,6 @@
         <a href="#sobre">Sobre</a>
         <a href="#skills">Skills</a>
         <a href="#projetos">Projetos</a>
-        <a href="#codigo">Código</a>
         <a href="#contato">Contato</a>
       </nav>
       <button class="theme-toggle" onclick="toggleTheme()">Light</button>
@@ -491,12 +512,17 @@
 
   <main>
     <section class="hero" id="sobre">
-      <h1>Desenvolvedor Full Stack</h1>
-      <div class="subtitle">Backend • Automação • Inteligência Artificial</div>
-      <div class="description">
-        Especializado em Python e desenvolvimento backend, com experiência em automação de processos, 
-        integração de sistemas e soluções de IA. Atualmente desenvolvendo sistemas robustos para 
-        escritórios contábeis e implementando chatbots inteligentes com RAG.
+      <div style="display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;justify-content:space-between;">
+        <div>
+          <h1>Desenvolvedor Full Stack</h1>
+          <div class="subtitle">Backend • Automação • Inteligência Artificial</div>
+          <div class="description">
+            Especializado em Python e desenvolvimento backend, com experiência em automação de processos, 
+            integração de sistemas e soluções de IA. Atualmente desenvolvendo sistemas robustos para 
+            escritórios contábeis e implementando chatbots inteligentes com RAG.
+          </div>
+        </div>
+        <img src="midia/eu.jpg" alt="Italo Rhaffael" style="width:160px;height:160px;object-fit:cover;border-radius:50%;box-shadow:0 2px 16px #0002;flex-shrink:0;">
       </div>
     </section>
 
@@ -557,7 +583,8 @@
     </section>
 
     <section id="projetos">
-      <h2 class="section-title">Projetos Principais</h2>
+  <h2 class="section-title">Projetos Principais</h2>
+  <p style="text-align:center;color:var(--text-muted);margin-bottom:2rem;max-width:700px;margin-left:auto;margin-right:auto;font-size:1rem;">Esses são apenas alguns dos projetos que desenvolvi. Tenho muitos outros já entregues e diversos em plano de desenvolvimento, abrangendo automação, IA, sistemas embarcados e soluções personalizadas para empresas.</p>
       <div class="grid grid-2">
         <div class="card project-card">
           <h3>SatusSys</h3>
@@ -630,7 +657,7 @@
 
         <div class="card project-card">
           <h3>TCC - IA e Propriedade Intelectual</h3>
-          <img src="midia/tcc_ia_pi.jpg" alt="TCC IA e Propriedade Intelectual" style="width:100%;border-radius:8px;margin-bottom:1rem;">
+          <img src="midia/tcc.png" alt="TCC IA e Propriedade Intelectual" style="width:100%;border-radius:8px;margin-bottom:1rem;">
           <p>Este TCC compara APIs de inteligência artificial (ChatGPT, LLaMA e Mistral) na classificação de extratos de contratos de inovação aberta. Foram avaliadas acurácia, precisão e eficiência dos modelos, destacando cenários ideais para cada ferramenta e orientando a escolha conforme a necessidade do projeto.</p>
           <div class="tech-stack">
             <span class="tech-tag">Inteligência Artificial</span>
