@@ -648,6 +648,18 @@
       background: conic-gradient(from 0deg, transparent, rgba(37, 99, 235, 0.05), transparent);
     }
 
+    /* Remover gradiente das divs principais e tags no modo claro para melhor leitura */
+    body.light .skill-category,
+    body.light .project-card,
+    body.light .contact-item {
+      background: var(--bg-card) !important;
+    }
+    body.light .skill-item,
+    body.light .tech-tag {
+      background: var(--bg-secondary) !important;
+      color: var(--text-secondary) !important;
+    }
+
     /* Scroll Progress Bar */
     .progress-bar {
       position: fixed;
