@@ -951,7 +951,7 @@
       
       setTimeout(type, 500);
       
-      // Animações de entrada observadas
+      // Animações de entrada observadas (IntersectionObserver para animar cards ao entrar na tela)
       const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -966,20 +966,22 @@
         });
       }, observerOptions);
       
-      // Observar elementos que precisam de animação
+      // Observar elementos que precisam de animação (cards ainda não animados)
       document.querySelectorAll('.card:not(.fade-in)').forEach(el => observer.observe(el));
       
-      // Criar partículas de fundo
+      // Criar partículas de fundo animadas
       createParticles();
       
-      // Progress bar
+      // Inicializar barra de progresso de scroll
       updateProgressBar();
       
-      // Header scroll effect
+      // Inicializar efeito de header ao rolar
       setupHeaderScroll();
     });
 
-    // Função para criar partículas animadas
+    /**
+     * Cria partículas animadas de fundo para efeito visual.
+     */
     function createParticles() {
       const particlesContainer = document.getElementById('particles');
       const particleCount = 50;
@@ -1005,7 +1007,9 @@
       }
     }
 
-    // Progress bar de scroll
+    /**
+     * Atualiza a barra de progresso no topo da página conforme o scroll.
+     */
     function updateProgressBar() {
       window.addEventListener('scroll', () => {
         const scrollTop = window.pageYOffset;
@@ -1015,7 +1019,9 @@
       });
     }
 
-    // Header scroll effect
+    /**
+     * Adiciona/remover classe no header ao rolar a página para efeito visual.
+     */
     function setupHeaderScroll() {
       let lastScrollTop = 0;
       const header = document.getElementById('header');
@@ -1033,7 +1039,9 @@
       });
     }
 
-    // Toggle theme aprimorado
+    /**
+     * Alterna entre tema claro e escuro, atualiza botão e salva preferência no localStorage.
+     */
     function toggleTheme() {
       document.body.classList.toggle('light');
       const btn = document.querySelector('.theme-toggle');
@@ -1051,7 +1059,7 @@
       }, 150);
     }
 
-    // Carregar tema salvo
+    // Carregar tema salvo do localStorage ao iniciar a página
     document.addEventListener('DOMContentLoaded', function() {
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme === 'light') {
@@ -1060,7 +1068,9 @@
       }
     });
 
-    // Smooth scroll navigation aprimorado
+    /**
+     * Navegação suave ao clicar nos links do menu, com ajuste para altura do header.
+     */
     document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -1081,7 +1091,9 @@
       });
     });
 
-    // Atualizar link ativo baseado no scroll
+    /**
+     * Atualiza o link ativo do menu conforme a seção visível na tela (scroll spy).
+     */
     window.addEventListener('scroll', () => {
       const sections = document.querySelectorAll('section[id]');
       const scrollPos = window.pageYOffset + 150;
@@ -1098,7 +1110,9 @@
       });
     });
 
-    // Efeitos de hover aprimorados para cards
+    /**
+     * Efeito de hover para cards: eleva e aumenta levemente ao passar o mouse.
+     */
     document.querySelectorAll('.card').forEach(card => {
       card.addEventListener('mouseenter', function() {
         this.style.transform = 'translateY(-8px) scale(1.02)';
@@ -1109,7 +1123,9 @@
       });
     });
 
-    // Adicionar cursor customizado para elementos interativos
+    /**
+     * Altera o cursor para pointer em elementos interativos e volta ao normal ao sair.
+     */
     document.querySelectorAll('a, button, .card, .skill-item, .tech-tag').forEach(element => {
       element.addEventListener('mouseenter', function() {
         document.body.style.cursor = 'pointer';
